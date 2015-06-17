@@ -1,39 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-  <script type="text/javascript">
-  google.load("visualization", "1", {packages:["corechart"]});
-  google.setOnLoadCallback(drawChart);
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="js/core.js"></script>
+<script type="text/javascript">
+google.load("visualization", "1", {packages:["corechart"]});
+//   google.setOnLoadCallback(drawChart);
+</script>
 
-  function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-      ['Task', 'Hours per Day'],
-      ['null', 0],
-      ['Gostou',  11 ],
-      ['Nem tanto', 7]
-    ]);
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+<title>Feeling Cast</title>
 
-    var options = {
-      'legend':'bottom',
-      pieHole: 0.4,
-      colors: ['#3F51B5','#4CAF50', '#F44336']
-    };
-
-    var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-    chart.draw(data, options);
-  }
-  </script>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <title>Feeling Cast</title>
-
-  <!-- CSS  -->
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<!-- CSS  -->
+<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 
-<body>
+<body onload="drawChart(0,0)">
   <nav class="blue darken-2" role="navigation">
     <!-- <div class="nav-wrapper container"> <img src="img/GDG_Juiz_de_Fora.png"  > </div> -->
   </nav>
@@ -42,6 +26,12 @@
       <h1 class="header center blue-text">Feeling Cast</h1>
       <div class="row center">
         <h5 class="header col s12 light">Como está sendo o Codelab?</h5>
+
+        <a class="btn-floating btn-large waves-effect waves-light green"
+        onclick="votePositive()"><i class="mdi-content-add"></i></a>
+        <a class="btn-floating btn-large waves-effect waves-light red"
+        onclick="voteNegative()"><i class="mdi-content-remove"></i></a>
+
       </div>
 
     </div>
@@ -58,58 +48,60 @@
           </div>
         </div>
 
-
         <div class="col s12 m6">
           <div class="icon-block">
             <h2 class="center light-blue-text"><i class="mdi-social-group"></i></h2>
 
+            <div id="div_messages"></div>
+            <!--
             <div class="card-panel green">
-              <div class="card-content white-text">
-                This is an example quotation that uses the blockquote tag.
-              </div>
-            </div>
-
-            <div class="card-panel red">
-              <div class="card-content white-text">
-                This is an example quotation that uses the blockquote tag.
-              </div>
-            </div>
-
-            </div>
+            <div class="card-content white-text">
+            This is an example quotation that uses the blockquote tag.
+          </div>
         </div>
-      </div>
 
+        <div class="card-panel red">
+        <div class="card-content white-text">
+        This is an example quotation that uses the blockquote tag.
+      </div>
     </div>
-    <br><br>
-    <div class="section"> </div>
+  -->
+
+</div>
+</div>
+</div>
+
+</div>
+<br><br>
+<div class="section"> </div>
+</div>
+
+<footer class="page-footer blue">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Feeling Cast</h5>
+        <p class="grey-text text-lighten-4">Permite que você opine como está o andamento do Codelab, o voto é enviado para o Chromecast. </p>
+      </div>
+      <div class="col l3 s12">
+        <br>
+      </div>
+      <div class="col l3 s12">
+          <img src="img/qrcode.png" />
+      </div>
+    </div>
   </div>
-
-  <footer class="page-footer blue">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Feeling Cast</h5>
-          <p class="grey-text text-lighten-4">Permite que você opine como está o andamento do Codelab, o voto é enviado para o Chromecast. </p>
-        </div>
-        <div class="col l3 s12">
-          <br>
-        </div>
-        <div class="col l3 s12">
-          <img src="img/qrcode.png">
-        </div>
-      </div>
+  <div class="footer-copyright">
+    <div class="container"> Made by <a class="blue-text text-lighten-2" href="http://materializecss.com">Materialize</a>
     </div>
-    <div class="footer-copyright">
-      <div class="container"> Made by <a class="blue-text text-lighten-2" href="http://materializecss.com">Materialize</a>
-      </div>
-    </div>
-  </footer>
+  </div>
+</footer>
 
 
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
 
 </body>
 </html>

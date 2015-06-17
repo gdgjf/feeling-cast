@@ -21,3 +21,8 @@
    height: 50px;
 
 }
+
+#div_messages {
+    max-height: 400px;
+    overflow: hidden;
+}
