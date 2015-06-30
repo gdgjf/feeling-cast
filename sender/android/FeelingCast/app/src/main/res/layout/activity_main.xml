@@ -10,10 +10,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@+id/main_toolbar"
-        android:text="@string/hello_world" />
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <EditText
+            android:id="@+id/main_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/main_btn_pos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Positivo" />
+
+        <Button
+            android:id="@+id/main_btn_neg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Negativo" />
+
+        <TextView
+            android:id="@+id/main_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_world" />
+    </LinearLayout>
 
 </RelativeLayout>
