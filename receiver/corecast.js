@@ -17,7 +17,7 @@ window.onload = function() {
   castReceiverManager.onSenderConnected = function(event) {
     console.log('Received Sender Connected event: ' + event.data);
     console.log(window.castReceiverManager.getSender(event.data).userAgent);
-    window.messageBus.send(event.senderId, "Já tem " + getTotais() + " votos!");
+   
   };
 
   // handler for 'senderdisconnected' event

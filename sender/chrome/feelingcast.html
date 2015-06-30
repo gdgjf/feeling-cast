@@ -1,191 +1,35 @@
-
-
-
-
 <!DOCTYPE HTML>
-
 <html>
-
 <head>
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
- <title>Your Website</title>
-
-
-<script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
-
-<script type="text/javascript">
-// app ID
-var applicationID = '57840D57';
-var namespace = 'urn:x-cast:com.littleredgroup.jkpls';
-var session = null;
-
-
-        if (!chrome.cast || !chrome.cast.isAvailable) {
-        	setTimeout(initializeCastApi, 1000);
-        }
-
-        /**
-         * initialization
-         * Realiza o procedimento de inicialização do aplicativo
-         */
-         function initializeCastApi() {
-         	var sessionRequest = new chrome.cast.SessionRequest(applicationID);
-         	var apiConfig = new chrome.cast.ApiConfig(sessionRequest,
-         		sessionJoinedListener,
-         		receiverListener);
-         	chrome.cast.initialize(apiConfig, onInitSuccess, onError);
-         }
-
-
-         function onInitSuccess() {
-         	appendMessage("onInitSuccess");
-         }
-
-         /**/
-         function onError(message) {
-         	appendMessage("onError: "+JSON.stringify(message));
-         }
-
-         function onSuccess(message) {
-         	appendMessage("onSuccess: "+message);
-         }
-
-        // Selecao do dispositivo pela extensao do Cast
-        function receiverListener(receivers) {
-        	if(receivers === chrome.cast.ReceiverAvailability.AVAILABLE) {
-        		console.log(receivers);
-        	}
-        }
-
-        function sessionJoinedListener(e) {
-        	console.log(e);
-        	session = e;
-        	session.addUpdateListener(sessionUpdateListener);
-        	session.addMessageListener(namespace, receiverMessage);
-        }
-
-      /**
-         * Listener de atualização de sessão - disparado quando o estado da sessão muda
-         */
-         function sessionUpdateListener(isAlive) {
-         	var message = isAlive ? 'Session Updated' : 'Session Removed';
-         	message += ': ' + session.sessionId;
-         	appendMessage("sessionUpdateListener: " + message);
-         	if (!isAlive) {
-         		session = null;
-         	}
-         };
-
-        /** Função para logar messagens do receiver
-         * @param {string} namespace O namespace da mensagem
-         * @param {string} message A mensagem em si
-         */
-         function receiverMessage(namespace, message) {
-         	appendMessage("receiverMessage: " + message);
-         }
-
-         function sendMessage(message) {
-         	if (session!=null) {
-         		session.sendMessage(namespace, message, onSuccess.bind(this, "Message sent (session!=null) : " + JSON.stringify(message)), onError);
-         	}
-         	else {
-         		chrome.cast.requestSession(function(e) {
-         			session = e;
-         			session.addUpdateListener(sessionUpdateListener);
-        			session.addMessageListener(namespace, receiverMessage);
-         			session.sendMessage(namespace, message, onSuccess.bind(this, "Message sent: " + JSON.stringify(message)), onError);
-         		}, onError);
-         	}
-         }
-
-         function appendMessage(message) {
-         	console.log(message);
-         	var dw = document.getElementById("result_card");
-         	dw.innerHTML += '\n' + JSON.stringify(message);
-     };
-
-     function setNameForPlayerCast() {
-
-     	var name = document.getElementById("input_name").value;
-
-     	if(name.trim().length  === 0) {
-     		name = generateName();
-     		document.getElementById("input_name").value = name;
-     		document.getElementById("input_name").focus();
-     	}
-
-     	var JSONObj = { "action":"connect", "name":name};
-     	sendMessage(JSONObj );
-     }
-
-     function generateName() {
-     	var millis = new Date().getMilliseconds();
-     	var name = "Chrome-".concat(millis);
-     	return name;
-     }
-
-
-
-     function choice(choice){
-     	var JSONObj = { "action":"choice", "value":choice};
-     	sendMessage(JSONObj );
-
-     }
-
- </script>
-
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" type="text/css" href="sender.css" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Feeling Cast</title>
+  <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
+  <script type="text/javascript" src="corecast_sender.js"></script>
 </head>
 
 <body>
+  <header id="header">
+    <h1>Feeling Cast</h1>
+  </header>
 
-	<header>
-		<nav>
-			<ul>
-				<li>Your menu</li>
-			</ul>
-		</nav>
-	</header>
+  <section id="main">
+    <center class="content">
+      <article>
+        <form>
+            <p><input id="message" type="text"></p>
+            <p><button onClick="votePositive()">POSITIVO</button></p>
+            <p><button onClick="voteNegative()">NEGATIVO</button></p>
+          </div>
+        </form>
+     </article>
 
-	<section>
-    <form name="fName" class="center col s12" method="get" action="JavaScript:setNameForPlayerCast();">
-  					<div class="input-field col s6">
-  						<input id="input_name" type="text" class="validate" >
-  						<label for="input_name">Nome do Jogador</label>
-  					</div>
-  					<div class="input-field col s6">
-  						<button  onClick="document.fName.submit()">Iniciar</button>
-  					</div>
-  				</form>
-
-
-
-		<article>
-			<header>
-				<h2>Article title</h2>
-				<p>Posted on <time datetime="2009-09-04T16:31:24+02:00">September 4th 2009</time> by <a href="#">Writer</a> - <a href="#comments">6 comments</a></p>
-			</header>
-			<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-		</article>
-
-		<article>
-			<header>
-				<h2>Article title</h2>
-				<p>Posted on <time datetime="2009-09-04T16:31:24+02:00">September 4th 2009</time> by <a href="#">Writer</a> - <a href="#comments">6 comments</a></p>
-			</header>
-			<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-		</article>
-
-	</section>
-
-	<aside>
-		<h2>About section</h2>
-		<p>Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-	</aside>
-
-	<footer>
-		<p>Copyright 2009 Your name</p>
-	</footer>
-
+     <article>
+       <div id="messages">
+       </div>
+     </article>
+  </section>
 </body>
 
 </html>
