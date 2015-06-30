@@ -1,6 +1,18 @@
 var totalNegative = 0;
 var totalPositive = 0;
 
+function getPositives() {
+    return totalPositive;
+}
+
+function getNegatives(){
+    return totalNegative;
+}
+
+function getTotais(){
+    return totalPositive + totalNegative;
+}
+
 function votePositive(message) {
   totalPositive = totalPositive+1;
   drawChart(totalPositive,totalNegative);
@@ -36,7 +48,6 @@ function drawChart(positive, negative) {
   var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
   chart.draw(data, options);
 }
-
 
 function addMessage(message, type) {
   var status = "";

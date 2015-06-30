@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     EditText editText;
     Button btnPositivo;
     Button btnNegativo;
+    Button btnNull;
     TextView textView;
 
     @Override
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.main_edittext);
         btnPositivo = (Button) findViewById(R.id.main_btn_pos);
         btnNegativo = (Button) findViewById(R.id.main_btn_neg);
+        btnNull = (Button) findViewById(R.id.main_btn_nulo);
         textView = (TextView) findViewById(R.id.main_text_view);
 
         btnPositivo.setOnClickListener(new View.OnClickListener() {
@@ -65,14 +67,18 @@ public class MainActivity extends AppCompatActivity {
                 buttonAction("positive");
             }
         });
-
         btnNegativo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 buttonAction("negative");
             }
         });
-
+        btnNull.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonAction("null");
+            }
+        });
         mMediaRouter = MediaRouter.getInstance(getApplicationContext());
         mMediaRouteSelector = new MediaRouteSelector.Builder().
                 addControlCategory(CastMediaControlIntent.categoryForCast(getResources().getString(R.string.cast_app_id))).build();
@@ -237,6 +243,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onMessageReceived(CastDevice castDevice, String namespace, String message) {
+            textView.setText(message);
             Log.d(TAG, "from " + castDevice.getFriendlyName() + " : " + message);
         }
     }
