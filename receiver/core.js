@@ -1,21 +1,21 @@
 var totalNegative = 0;
 var totalPositive = 0;
 
-function votePositive() {
+function votePositive(message) {
   totalPositive = totalPositive+1;
   drawChart(totalPositive,totalNegative);
-  addMessage("Oh loco bicho!","POSITIVE");
+  addMessage(message,"POSITIVE");
 }
 
-function voteNegative() {
+function voteNegative(message) {
   totalNegative = totalNegative+1;
   drawChart(totalPositive,totalNegative);
-  addMessage("Ahhhh mais ou menos","NEGATIVE");
+  addMessage(message,"NEGATIVE");
 }
 
 function drawChart(positive, negative) {
   nulo = 0;
-  if(positive + negative == 0){
+  if(positive + negative == 0) {
     nulo = 1;
   }
 
@@ -27,6 +27,7 @@ function drawChart(positive, negative) {
   ]);
 
   var options = {
+    backgroundColor: 'transparent',
     'legend':'bottom',
     pieHole: 0.4,
     colors: ['#3F51B5','#4CAF50', '#F44336']
@@ -37,16 +38,15 @@ function drawChart(positive, negative) {
 }
 
 
-function addMessage(message, type){
-  var color = "blue";
-  if(type == "NEGATIVE"){
-    color = "red";
-  } else if(type == "POSITIVE" ){
-    color = "green";
+function addMessage(message, type) {
+  var status = "";
+  if(type == "NEGATIVE") {
+    status = "negative";
+  } else if(type == "POSITIVE" ) {
+    status = "positive";
   }
+  var card = "<div class=\"card "+status+"\"> " + message +" </div>"
 
-  var card = "<div class=\"card-panel "+color+"\"> <div class=\"card-content white-text\">" + message +"</div></div>";
-
-  var divMessages = document.getElementById('div_messages');
+  var divMessages = document.getElementById('comments');
   divMessages.insertAdjacentHTML('afterbegin', card);
 }
