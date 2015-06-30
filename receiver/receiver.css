@@ -1,0 +1,87 @@
+
+/*------------------------------
+=BASIC SETUP
+------------------------------*/
+html{
+  font-family: 'Roboto', serif;
+}
+
+body {
+    background: #F7F7F7;
+    position: relative;
+    height: 100%;
+    margin: 0px;
+    padding-top: 22px;
+    padding-bottom: 22px;
+}
+
+#main {
+    display: inline-block;
+    width: 75%;
+    margin: auto;
+}
+
+#comments {
+    text-align:left;
+    min-width:250px;
+    max-width: 250px;
+    width: 250px;
+}
+
+aside {
+    float: right;
+}
+
+#header{
+    background: #303F9F;
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 10%;
+    padding: 6px;
+    top:0;
+    text-align:center;
+    color: #ffffff;
+}
+
+#footer {
+    background: #616161;
+    position: fixed;
+    width: 100%;
+    height: 5%;
+    padding: 6px;
+    bottom: 0;
+    text-align:center;
+    color: #ffffff;
+}
+
+#qrcode {
+    float:right;
+}
+
+.card {
+  display: block;
+  position: relative;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background-color: #fff;
+  margin: 16px auto;
+  padding: 24px;
+  box-shadow: 4px 4px 5px #888888;
+}
+
+.positive {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+.negative {
+  background-color: #F44336;
+  color: #fff;
+}
+
+#comments {
+    max-height: 500px;
+    overflow: hidden;
+}
